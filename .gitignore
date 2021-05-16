@@ -144,6 +144,15 @@ DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
 
+
+/**/bin/**/*
+/./**/bin/**/*
+./**/bin/**/*
+**/bin/**/*
+*/bin/**/*
+bin/**/*
+/**/bin/* #and the others with just * at the end too
+
 # Click-Once directory
 publish/
 

@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace HRMAspNet.Models
 {
     public partial class HRMContext : DbContext
@@ -15,10 +19,12 @@ namespace HRMAspNet.Models
         {
         }
 
-        public virtual DbSet<Aministrativearea> Aministrativearea { get; set; }
+        public virtual DbSet<Administrativearea> Aministrativearea { get; set; }
+        public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Employeedetail> Employeedetail { get; set; }
         public virtual DbSet<Provincial> Provincial { get; set; }
+        public virtual DbSet<Timekeeping> Timekeeping { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,7 +38,7 @@ namespace HRMAspNet.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aministrativearea>(entity =>
+            modelBuilder.Entity<Administrativearea>(entity =>
             {
                 entity.HasKey(e => e.AdministrativeAreaId)
                     .HasName("PRIMARY");
@@ -41,7 +47,6 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.AdministrativeAreaId)
                     .HasColumnName("AdministrativeAreaID")
-                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -85,13 +90,37 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
             });
 
+            modelBuilder.Entity<Attendance>(entity =>
+            {
+                entity.ToTable("attendance");
+
+                entity.Property(e => e.AttendanceId)
+                    .HasColumnName("AttendanceID")
+                    .HasComment("Khóa chính bảng điểm danh")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.EmployeeCode)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasComment("Mã nhân viên")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.FullName)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasComment("Tên nhân viên")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+            });
+
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("employee");
 
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("EmployeeID")
-                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -226,7 +255,6 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.EmployeeDetailId)
                     .HasColumnName("EmployeeDetailID")
                     .HasComment("Khóa chính bảng EmployeeDetail")
-                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -528,7 +556,6 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.ProvincialId)
                     .HasColumnName("ProvincialID")
-                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -537,6 +564,33 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.ProvincialName)
                     .IsRequired()
                     .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+            });
+
+            modelBuilder.Entity<Timekeeping>(entity =>
+            {
+                entity.ToTable("timekeeping");
+
+                entity.HasComment("Bảng chấm công");
+
+                entity.Property(e => e.TimeKeepingId)
+                    .HasColumnName("TimeKeepingID")
+                    .HasComment("Khóa chính bảng chấm công")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.EmployeeCode)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasComment("Mã nhân viên")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.FullName)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasComment("Tên nhân viên")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
             });
@@ -551,7 +605,6 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.UserId)
                     .HasColumnName("UserID")
-                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 

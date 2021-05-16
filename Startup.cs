@@ -1,4 +1,7 @@
+//using HRMAspNet.Models;
+using HRMAspNet.Interfaces;
 using HRMAspNet.Models;
+using HRMAspNet.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,6 +44,8 @@ namespace HRMAspNet
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Swagger Demo", Version = "v1" });
             });
+
+            services.AddScoped(typeof(IAdministrativeArea),typeof(AdministrativeAreaService) );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
