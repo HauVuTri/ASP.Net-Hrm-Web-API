@@ -12,5 +12,6 @@ namespace HRMAspNet.Models
         public Guid AttendanceId { get; set; }
         public string EmployeeCode { get; set; }
         public string FullName { get; set; }
+        public DateTime CheckinTime { get; set; }
     }
 }

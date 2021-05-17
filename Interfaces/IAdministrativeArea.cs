@@ -10,11 +10,11 @@ namespace HRMAspNet.Interfaces
 {
     public interface IAdministrativeArea
     {
-        public Task<ActionResult<IEnumerable<Administrativearea>>> GetAministrativearea();
-        public Task<ActionResult<Administrativearea>> GetAministrativearea(Guid id);
-        public Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Administrativearea aministrativearea);
-        public Task<ActionResult<Administrativearea>> PostAministrativearea(Administrativearea aministrativearea);
-        public Task<ActionResult<Administrativearea>> DeleteAministrativearea(Guid id);
+        public Task<ActionResult<IEnumerable<Aministrativearea>>> GetAministrativearea();
+        public Task<ActionResult<Aministrativearea>> GetAministrativearea(Guid id);
+        public Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Aministrativearea aministrativearea);
+        public Task<ActionResult<Aministrativearea>> PostAministrativearea(Aministrativearea aministrativearea);
+        public Task<ActionResult<Aministrativearea>> DeleteAministrativearea(Guid id);
 
 
     }

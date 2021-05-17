@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using HRMAspNet.Models;
 using HRMAspNet.Interfaces;
 using HRMAspNet.Common;
+using HRMAspNet.Controllers.BaseController;
 
 namespace HRMAspNet.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class AministrativeareasController : ControllerBase
     {
         private readonly HRMContext _context;
@@ -26,14 +26,14 @@ namespace HRMAspNet.Controllers
 
         // GET: api/Aministrativeareas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Administrativearea>>> GetAministrativearea()
+        public async Task<ActionResult<IEnumerable<Aministrativearea>>> GetAministrativearea()
         {
             return await _iAdministrativeArea.GetAministrativearea();
         }
 
         // GET: api/Aministrativeareas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Administrativearea>> GetAministrativearea(Guid id)
+        public async Task<ActionResult<Aministrativearea>> GetAministrativearea(Guid id)
         {
             return await _iAdministrativeArea.GetAministrativearea(id);
         }
@@ -42,7 +42,7 @@ namespace HRMAspNet.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Administrativearea aministrativearea)
+        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Aministrativearea aministrativearea)
         {
             return await _iAdministrativeArea.PutAministrativearea(id, aministrativearea);
         }
@@ -51,7 +51,7 @@ namespace HRMAspNet.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Administrativearea>> PostAministrativearea(Administrativearea administrativearea)
+        public async Task<ActionResult<Aministrativearea>> PostAministrativearea(Aministrativearea administrativearea)
         {
             _context.Aministrativearea.Add(administrativearea);
             await _context.SaveChangesAsync();
@@ -61,7 +61,7 @@ namespace HRMAspNet.Controllers
 
         // DELETE: api/Aministrativeareas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Administrativearea>> DeleteAministrativearea(Guid id)
+        public async Task<ActionResult<Aministrativearea>> DeleteAministrativearea(Guid id)
         {
             var aministrativearea = await _context.Aministrativearea.FindAsync(id);
             if (aministrativearea == null)

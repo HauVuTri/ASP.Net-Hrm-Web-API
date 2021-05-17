@@ -12,5 +12,6 @@ namespace HRMAspNet.Models
         public Guid TimeKeepingId { get; set; }
         public string EmployeeCode { get; set; }
         public string FullName { get; set; }
+        public DateTime Period { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace HRMAspNet.Models
 {
-    public partial class Administrativearea
+    public partial class Aministrativearea
     {
         public Guid AdministrativeAreaId { get; set; }
         public string AdministrativeAreaCode { get; set; }

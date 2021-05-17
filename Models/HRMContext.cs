@@ -19,7 +19,7 @@ namespace HRMAspNet.Models
         {
         }
 
-        public virtual DbSet<Administrativearea> Aministrativearea { get; set; }
+        public virtual DbSet<Aministrativearea> Aministrativearea { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Employeedetail> Employeedetail { get; set; }
@@ -38,7 +38,7 @@ namespace HRMAspNet.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Administrativearea>(entity =>
+            modelBuilder.Entity<Aministrativearea>(entity =>
             {
                 entity.HasKey(e => e.AdministrativeAreaId)
                     .HasName("PRIMARY");
@@ -99,6 +99,10 @@ namespace HRMAspNet.Models
                     .HasComment("Khóa chính bảng điểm danh")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.CheckinTime)
+                    .HasColumnType("datetime")
+                    .HasComment("Thời gian điểm danh");
 
                 entity.Property(e => e.EmployeeCode)
                     .IsRequired()
@@ -593,6 +597,10 @@ namespace HRMAspNet.Models
                     .HasComment("Tên nhân viên")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.Period)
+                    .HasColumnType("datetime")
+                    .HasComment("Kỳ chấm công");
             });
 
             modelBuilder.Entity<User>(entity =>

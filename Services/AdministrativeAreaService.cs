@@ -19,17 +19,17 @@ namespace HRMAspNet.Services
             _context = context;
         }
 
-        public Task<ActionResult<Administrativearea>> DeleteAministrativearea(Guid id)
+        public Task<ActionResult<Aministrativearea>> DeleteAministrativearea(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ActionResult<IEnumerable<Administrativearea>>> GetAministrativearea()
+        public async Task<ActionResult<IEnumerable<Aministrativearea>>> GetAministrativearea()
         {
             return await _context.Aministrativearea.ToListAsync();
         }
 
-        public async Task<ActionResult<Administrativearea>> GetAministrativearea(Guid id)
+        public async Task<ActionResult<Aministrativearea>> GetAministrativearea(Guid id)
         {
             var aministrativearea = await _context.Aministrativearea.FindAsync(id);
 
@@ -46,12 +46,12 @@ namespace HRMAspNet.Services
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<Administrativearea>> PostAministrativearea(Administrativearea aministrativearea)
+        public Task<ActionResult<Aministrativearea>> PostAministrativearea(Aministrativearea aministrativearea)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Administrativearea aministrativearea)
+        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Aministrativearea aministrativearea)
         {
             if (id != aministrativearea.AdministrativeAreaId)
             {
@@ -66,8 +66,8 @@ namespace HRMAspNet.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!Common.AdministrativeareaExists(id))
-                if (!CommonFunction.AdministrativeareaExists(id,_context))
+                //if (!Common.AministrativeareaExists(id))
+                if (!CommonFunction.AministrativeareaExists(id,_context))
                 {
                     return NotFound();
                 }

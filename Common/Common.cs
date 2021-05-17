@@ -8,7 +8,7 @@ namespace HRMAspNet.Common
 {
     public class CommonFunction
     {
-        public static bool AdministrativeareaExists(Guid id, HRMContext context)
+        public static bool AministrativeareaExists(Guid id, HRMContext context)
         {
             return context.Aministrativearea.Any(e => e.AdministrativeAreaId == id);
         }
