@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using HRMAspNet.Models;
 using HRMAspNet.Interfaces;
 using HRMAspNet.Interfaces.BaseInterface;
+using HRMAspNet.Controllers.BaseController;
 
-namespace HRMAspNet.Controllers.BaseController
+namespace HRMAspNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

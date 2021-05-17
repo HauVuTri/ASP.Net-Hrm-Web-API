@@ -11,10 +11,10 @@ using System.Net;
 
 namespace HRMAspNet.Services
 {
-    public class AdministrativeAreaService : IAdministrativeArea
+    public class AministrativeAreaService : IAdministrativeArea
     {
         private readonly HRMContext _context;
-        public AdministrativeAreaService(HRMContext context)
+        public AministrativeAreaService(HRMContext context)
         {
             _context = context;
         }

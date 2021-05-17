@@ -49,9 +49,9 @@ namespace HRMAspNet
 
 
             //DI
-            services.AddScoped(typeof(IAdministrativeArea),typeof(AdministrativeAreaService) );
-            //services.AddScoped(typeof(IProvincial), typeof(ProvincialService));
-            services.AddScoped(typeof(IBase<Provincial>), typeof(BaseService<Provincial>));
+            services.AddScoped(typeof(IAdministrativeArea),typeof(AministrativeAreaService) );
+            services.AddScoped(typeof(IBase<>), typeof(BaseService<>));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

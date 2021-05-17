@@ -7,11 +7,26 @@ using System.Collections.Generic;
 
 namespace HRMAspNet.Models
 {
+    /// <summary>
+    /// Lớp điểm danh
+    /// </summary>
     public partial class Attendance
     {
+        /// <summary>
+        /// Khóa chính
+        /// </summary>
         public Guid AttendanceId { get; set; }
+        /// <summary>
+        /// Mã nhân viên
+        /// </summary>
         public string EmployeeCode { get; set; }
+        /// <summary>
+        /// Tên nhân viên
+        /// </summary>
         public string FullName { get; set; }
+        /// <summary>
+        /// Thời gian checkin
+        /// </summary>
         public DateTime CheckinTime { get; set; }
     }
 }
