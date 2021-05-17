@@ -1,4 +1,5 @@
 //using HRMAspNet.Models;
+using HRMAspNet.Common;
 using HRMAspNet.Interfaces;
 using HRMAspNet.Interfaces.BaseInterface;
 using HRMAspNet.Models;
@@ -47,10 +48,13 @@ namespace HRMAspNet
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Swagger Demo", Version = "v1" });
             });
 
+            // configure strongly typed settings object
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             //DI
             services.AddScoped(typeof(IAdministrativeArea),typeof(AministrativeAreaService) );
             services.AddScoped(typeof(IBase<>), typeof(BaseService<>));
+            services.AddScoped<IUserService, UserService>();
 
         }
 
