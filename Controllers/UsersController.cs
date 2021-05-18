@@ -1,4 +1,5 @@
-﻿using HRMAspNet.Controllers.BaseController;
+﻿using HRMAspNet.Common;
+using HRMAspNet.Controllers.BaseController;
 using HRMAspNet.Interfaces;
 using HRMAspNet.Interfaces.BaseInterface;
 using HRMAspNet.Models;
@@ -37,6 +38,12 @@ namespace HRMAspNet.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(response);
+        }
+        [Authorize]
+        [HttpGet("getallUser")]
+        public List<User> GetAll()
+        {
+            return  _userService.GetAll();
         }
     }
 }

@@ -41,6 +41,24 @@ namespace HRMAspNet.Services
 
 
         }
+
+        public  List<User> GetAll()
+        {
+            using (HRMContext context = new HRMContext())
+            {
+                return  context.User.ToList();
+            }
+        }
+
+        public User GetById(Guid id)
+        {
+            using (HRMContext context = new HRMContext())
+            {
+                return context.User.FirstOrDefault(x => x.UserId == id);
+            }
+            
+        }
+
         private string generateJwtToken(User user)
         {
             // generate token that is valid for 7 days

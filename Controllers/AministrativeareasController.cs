@@ -9,72 +9,40 @@ using HRMAspNet.Models;
 using HRMAspNet.Interfaces;
 using HRMAspNet.Common;
 using HRMAspNet.Controllers.BaseController;
+using HRMAspNet.Interfaces.BaseInterface;
+using HRMAspNet.Responses;
 
 namespace HRMAspNet.Controllers
 {
     [Route("api/[controller]")]
-    public class AministrativeareasController : ControllerBase
+    public class AministrativeareasController : BaseController<Aministrativearea>
     {
-        private readonly HRMContext _context;
-        private readonly IAdministrativeArea _iAdministrativeArea;
+        private readonly IAdministrativeArea _iAministrativeArea;
 
-        public AministrativeareasController(HRMContext context, IAdministrativeArea administrativeArea)
+        public AministrativeareasController(IBase<Aministrativearea> iBase, IAdministrativeArea administrativeArea) : base(iBase)
         {
-            _context = context;
-            _iAdministrativeArea = administrativeArea;
+            _iAministrativeArea = administrativeArea;
+        }
+        [HttpGet("GetAdministrativeareaByAdministrativeAreaCode")]
+        public async Task<Aministrativearea> GetAministrativeareaByCode(string administrativeAreaCode)
+        {
+            return await _iAministrativeArea.GetAministrativeareaByCode(administrativeAreaCode);
         }
 
-        // GET: api/Aministrativeareas
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Aministrativearea>>> GetAministrativearea()
+        /// <summary>
+        /// Lấy dữ liệu danh mục địa bàn hành chính theo mã cha
+        /// 
+        /// </summary>
+        /// <param name="codeDetect">mã để nhận biết là tìm kiếm theo tỉnh hay huyện
+        /// 1: Lấy danh sách huyện theo tỉnh
+        /// 2: lấy danh sách xã theo huyện
+        /// </param>
+        /// <param name="parentCode"></param>
+        /// <returns></returns>
+        [HttpGet("GetAdministrativeByParentCode")]
+        public async Task<ActionServiceResult> GetAdministrativeByParentCode(int codeDetect,int parentCode)
         {
-            return await _iAdministrativeArea.GetAministrativearea();
+            return await _iAministrativeArea.GetAdministrativeByParentCode(codeDetect,parentCode);
         }
-
-        // GET: api/Aministrativeareas/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Aministrativearea>> GetAministrativearea(Guid id)
-        {
-            return await _iAdministrativeArea.GetAministrativearea(id);
-        }
-
-        // PUT: api/Aministrativeareas/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Aministrativearea aministrativearea)
-        {
-            return await _iAdministrativeArea.PutAministrativearea(id, aministrativearea);
-        }
-
-        // POST: api/Aministrativeareas
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Aministrativearea>> PostAministrativearea(Aministrativearea administrativearea)
-        {
-            _context.Aministrativearea.Add(administrativearea);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAministrativearea", new { id = administrativearea.AdministrativeAreaId }, administrativearea);
-        }
-
-        // DELETE: api/Aministrativeareas/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Aministrativearea>> DeleteAministrativearea(Guid id)
-        {
-            var aministrativearea = await _context.Aministrativearea.FindAsync(id);
-            if (aministrativearea == null)
-            {
-                return NotFound();
-            }
-
-            _context.Aministrativearea.Remove(aministrativearea);
-            await _context.SaveChangesAsync();
-
-            return aministrativearea;
-        }   
-
-       
     }
 }

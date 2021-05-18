@@ -1,4 +1,5 @@
-﻿using HRMAspNet.Interfaces.BaseInterface;
+﻿using HRMAspNet.Common;
+using HRMAspNet.Interfaces.BaseInterface;
 using HRMAspNet.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

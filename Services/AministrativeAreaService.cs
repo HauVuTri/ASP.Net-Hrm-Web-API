@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HRMAspNet.Common;
 using System.Net;
+using HRMAspNet.Responses;
 
 namespace HRMAspNet.Services
 {
@@ -18,71 +19,45 @@ namespace HRMAspNet.Services
         {
             _context = context;
         }
+        /// <summary>
+        /// Service Lấy dữ liệu bản ghi địa bàn hành chính theo Aministrative theo Code
+        /// </summary>
+        /// <returns></returns>
 
-        public Task<ActionResult<Aministrativearea>> DeleteAministrativearea(Guid id)
+        public async Task<Aministrativearea> GetAministrativeareaByCode(string administrativeAreaCode)
         {
-            throw new NotImplementedException();
+            return await _context.Aministrativearea.FirstOrDefaultAsync(x => x.AdministrativeAreaCode == administrativeAreaCode);
         }
 
-        public async Task<ActionResult<IEnumerable<Aministrativearea>>> GetAministrativearea()
+        public async Task<ActionServiceResult> GetAdministrativeByParentCode(int codeDetect, int parentCode)
         {
-            return await _context.Aministrativearea.ToListAsync();
-        }
-
-        public async Task<ActionResult<Aministrativearea>> GetAministrativearea(Guid id)
-        {
-            var aministrativearea = await _context.Aministrativearea.FindAsync(id);
-
-            if (aministrativearea == null)
+            //Mã tỉnh
+            if (parentCode != null && codeDetect == 1)
             {
-                return NotFound();
-            }
+                //Lấy ra danh sách mã huyện/quận
+                var data = await _context.Aministrativearea.Where(diaban => diaban.ProvincialCode == parentCode).Select(x => new DistrictAdministrativeAreaResponse(x.ProvincialCode, x.ProvincialName, x.DistrictCode, x.DistrictName)).Distinct().ToListAsync();
 
-            return aministrativearea;
-        }
 
-        private ActionResult NotFound()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ActionResult<Aministrativearea>> PostAministrativearea(Aministrativearea aministrativearea)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ActionResult<ActionServiceResult>> PutAministrativearea(Guid id, Aministrativearea aministrativearea)
-        {
-            if (id != aministrativearea.AdministrativeAreaId)
-            {
-                return new ActionServiceResult((int)HttpStatusCode.BadRequest,false,"Bad Request");
-            }
-
-            _context.Entry(aministrativearea).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                //if (!Common.AministrativeareaExists(id))
-                if (!CommonFunction.AministrativeareaExists(id,_context))
+                if (data.Count > 0)
                 {
-                    return NotFound();
+                    return new ActionServiceResult(200, true, "Lấy danh mục các huyện thuộc tỉnh thành công", data);
                 }
-                else
-                {
-                    throw;
-                }
+
             }
+            else if(parentCode != null && codeDetect == 2)
+            {
+                //Lấy ra danh sách xã/phường
+                //Lấy ra danh sách mã huyện/quận
+                var data = await _context.Aministrativearea.Where(diaban => diaban.DistrictCode == parentCode).Select(x => new WardAdministrativeAreaResponse(x.DistrictCode, x.DistrictName, x.WardCode, x.WardName)).Distinct().ToListAsync();
 
-            return new ActionServiceResult((int)HttpStatusCode.OK, true, "Cập nhật thành công");
-        }
 
-        private Task<IActionResult> BadRequest()
-        {
-            throw new NotImplementedException();
+                if (data.Count > 0)
+                {
+                    return new ActionServiceResult(200, true, "Lấy danh mục các xã thuộc huyện thành công", data);
+                }
+
+            }
+            return null;
         }
     }
 }

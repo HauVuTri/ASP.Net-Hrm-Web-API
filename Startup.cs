@@ -52,8 +52,9 @@ namespace HRMAspNet
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             //DI
-            services.AddScoped(typeof(IAdministrativeArea),typeof(AministrativeAreaService) );
+            //DI cho base 
             services.AddScoped(typeof(IBase<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IAdministrativeArea),typeof(AministrativeAreaService) );
             services.AddScoped<IUserService, UserService>();
 
         }
@@ -78,6 +79,9 @@ namespace HRMAspNet
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo");
             });
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
