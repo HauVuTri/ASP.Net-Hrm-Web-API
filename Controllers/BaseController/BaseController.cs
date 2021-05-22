@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace HRMAspNet.Controllers.BaseController
 {
     [ApiController]
+    //[Authorize]
     public abstract class BaseController<T> : ControllerBase where T : class
     {
         private readonly IBase<T> _iBase;
