@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
-
 namespace HRMAspNet.Models
 {
     public partial class Employeedetail
     {
+        public Employeedetail()
+        {
+            Rollcall = new HashSet<Rollcall>();
+            Timekeeping = new HashSet<Timekeeping>();
+        }
+
         public Guid EmployeeDetailId { get; set; }
-        public Guid EmployeeId { get; set; }
+        public string EmployeeCode { get; set; }
         public string FullName { get; set; }
-        public int? Gender { get; set; }
+        public int Gender { get; set; }
         public DateTime? BirthDay { get; set; }
         public string PlaceOfBirth { get; set; }
         public string MaritalStatus { get; set; }
         public string PersonalTaxCode { get; set; }
         public string Ethnic { get; set; }
         public string Religion { get; set; }
-        public string Nationality { get; set; }
+        public Guid? NationalityId { get; set; }
+        public string NationalityName { get; set; }
         public string IdentifyCardNumber { get; set; }
         public DateTime? IdentityCardDate { get; set; }
         public string IdentityCardPlace { get; set; }
@@ -44,25 +47,19 @@ namespace HRMAspNet.Models
         public string OtherEmail { get; set; }
         public string Skype { get; set; }
         public string Facebook { get; set; }
-        public string ResidenceNationality { get; set; }
         public string ResidenceCountry { get; set; }
         public string ResidenceProvince { get; set; }
         public string ResidenceDistrict { get; set; }
         public string ResidenceWard { get; set; }
         public string ResidenceStreet { get; set; }
         public string ResidenceFullAddress { get; set; }
-        public string CurrentCountry { get; set; }
-        public string CurrentProvince { get; set; }
-        public string CurrentDistrict { get; set; }
-        public string CurrentWard { get; set; }
-        public string CurrentStreet { get; set; }
-        public string CurrentFullAddress { get; set; }
         public string UrgentContactName { get; set; }
         public string UrgentContactPhone { get; set; }
         public string UrgentContactRelationship { get; set; }
         public string UrgentContactEmail { get; set; }
         public string UrgentContactAddress { get; set; }
-        public Guid? JobDetailJobPositionId { get; set; }
-        public string JobDetailJobPositionName { get; set; }
+
+        public virtual ICollection<Rollcall> Rollcall { get; set; }
+        public virtual ICollection<Timekeeping> Timekeeping { get; set; }
     }
 }

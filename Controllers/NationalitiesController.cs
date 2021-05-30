@@ -13,9 +13,9 @@ namespace HRMAspNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AttendancesController : BaseController<Attendance>
+    public class NationalitiesController : BaseController<Nationality>
     {
-        public AttendancesController(IBase<Attendance> iBase) : base(iBase)
+        public NationalitiesController(IBase<Nationality> iBase) : base(iBase)
         {
         }
     }

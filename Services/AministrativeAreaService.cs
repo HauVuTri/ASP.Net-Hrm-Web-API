@@ -32,7 +32,7 @@ namespace HRMAspNet.Services
         public async Task<ActionServiceResult> GetAdministrativeByParentCode(int codeDetect, int parentCode)
         {
             //Mã tỉnh
-            if (parentCode != null && codeDetect == 1)
+            if ( codeDetect == 1)
             {
                 //Lấy ra danh sách mã huyện/quận
                 var data = await _context.Aministrativearea.Where(diaban => diaban.ProvincialCode == parentCode).Select(x => new DistrictAdministrativeAreaResponse(x.ProvincialCode, x.ProvincialName, x.DistrictCode, x.DistrictName)).Distinct().ToListAsync();
@@ -44,11 +44,11 @@ namespace HRMAspNet.Services
                 }
 
             }
-            else if(parentCode != null && codeDetect == 2)
+            else if(codeDetect == 2)
             {
                 //Lấy ra danh sách xã/phường
                 //Lấy ra danh sách mã huyện/quận
-                var data = await _context.Aministrativearea.Where(diaban => diaban.DistrictCode == parentCode).Select(x => new WardAdministrativeAreaResponse(x.DistrictCode, x.DistrictName, x.WardCode, x.WardName)).Distinct().ToListAsync();
+                var data = await _context.Aministrativearea.Where(diaban => diaban.DistrictCode == parentCode).Select(x => new WardAdministrativeAreaResponse(x.WardCode, x.WardName,x.DistrictCode, x.DistrictName)).Distinct().ToListAsync();
 
 
                 if (data.Count > 0)

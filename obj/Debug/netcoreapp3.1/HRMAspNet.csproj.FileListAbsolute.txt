@@ -59,7 +59,6 @@ C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\r
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\obj\Debug\netcoreapp3.1\HRMAspNet.csprojAssemblyReference.cache
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
@@ -137,3 +136,7 @@ C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\r
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\obj\Debug\netcoreapp3.1\HRMAspNet.csproj.AssemblyReference.cache
+C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Huy Hoang PC\Desktop\github\BACKEND\HRMAspNet\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

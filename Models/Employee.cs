@@ -1,39 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
-
 namespace HRMAspNet.Models
 {
-    /// <summary>
-    /// Lớp người lao động
-    /// </summary>
     public partial class Employee
     {
-        /// <summary>
-        /// KHóa chính
-        /// </summary>
         public Guid EmployeeId { get; set; }
-        /// <summary>
-        /// Ngày sinh
-        /// </summary>
         public string BirthDay { get; set; }
-
-        /// <summary>
-        /// Tên loại hợp đồng
-        /// </summary>
         public string ContractTypeName { get; set; }
-
-        /// <summary>
-        /// Mã lao động
-        /// </summary>
         public string EmployeeCode { get; set; }
-
-        /// <summary>
-        /// Id trạng thái lao động
-        /// </summary>
         public int? EmployeeStatusId { get; set; }
         public string EmployeeStatusName { get; set; }
         public string FullName { get; set; }

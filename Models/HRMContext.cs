@@ -2,10 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
-
 namespace HRMAspNet.Models
 {
     public partial class HRMContext : DbContext
@@ -20,10 +16,11 @@ namespace HRMAspNet.Models
         }
 
         public virtual DbSet<Aministrativearea> Aministrativearea { get; set; }
-        public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Employeedetail> Employeedetail { get; set; }
+        public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Provincial> Provincial { get; set; }
+        public virtual DbSet<Rollcall> Rollcall { get; set; }
         public virtual DbSet<Timekeeping> Timekeeping { get; set; }
         public virtual DbSet<User> User { get; set; }
 
@@ -47,6 +44,7 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.AdministrativeAreaId)
                     .HasColumnName("AdministrativeAreaID")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -90,41 +88,13 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
             });
 
-            modelBuilder.Entity<Attendance>(entity =>
-            {
-                entity.ToTable("attendance");
-
-                entity.Property(e => e.AttendanceId)
-                    .HasColumnName("AttendanceID")
-                    .HasComment("Khóa chính bảng điểm danh")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CheckinTime)
-                    .HasColumnType("datetime")
-                    .HasComment("Thời gian điểm danh");
-
-                entity.Property(e => e.EmployeeCode)
-                    .IsRequired()
-                    .HasColumnType("varchar(255)")
-                    .HasComment("Mã nhân viên")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.FullName)
-                    .IsRequired()
-                    .HasColumnType("varchar(255)")
-                    .HasComment("Tên nhân viên")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-            });
-
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("employee");
 
                 entity.Property(e => e.EmployeeId)
                     .HasColumnName("EmployeeID")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -259,6 +229,7 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.EmployeeDetailId)
                     .HasColumnName("EmployeeDetailID")
                     .HasComment("Khóa chính bảng EmployeeDetail")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -269,36 +240,6 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.ClassificationLearn)
                     .HasColumnType("varchar(255)")
                     .HasComment("Xếp loại học lực")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentCountry)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentDistrict)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentFullAddress)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentProvince)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentStreet)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.CurrentWard)
-                    .HasColumnType("varchar(255)")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -314,9 +255,10 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
-                entity.Property(e => e.EmployeeId)
-                    .HasColumnName("EmployeeID")
-                    .HasComment("Id Employee")
+                entity.Property(e => e.EmployeeCode)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasComment("Mã nhân viên")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -332,13 +274,15 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.FullName)
+                    .IsRequired()
                     .HasColumnType("varchar(255)")
                     .HasComment("Tên đầy đủ")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Gender)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(1)")
+                    .HasDefaultValueSql("'1'")
                     .HasComment("Giới tính");
 
                 entity.Property(e => e.GraduationYear).HasColumnType("datetime");
@@ -351,6 +295,7 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.IdentifyCardNumber)
                     .HasColumnType("varchar(255)")
+                    .HasComment("Số CMT")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -368,16 +313,6 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
-                entity.Property(e => e.JobDetailJobPositionId)
-                    .HasColumnName("JobDetailJobPositionID")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.JobDetailJobPositionName)
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
                 entity.Property(e => e.MaritalStatus)
                     .HasColumnType("varchar(255)")
                     .HasComment("Tình trạng hôn nhân")
@@ -390,11 +325,15 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
-                entity.Property(e => e.Nationality)
+                entity.Property(e => e.NationalityId)
+                    .HasColumnName("NationalityID")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.NationalityName)
                     .HasColumnType("varchar(255)")
-                    .HasComment("quốc tịch")
-                    .HasCharSet("armscii8")
-                    .HasCollation("armscii8_general_ci");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.OfficeEmail)
                     .HasColumnType("varchar(255)")
@@ -470,11 +409,6 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.ResidenceFullAddress)
                     .HasColumnType("varchar(255)")
                     .HasComment("Địa chỉ thường trú ĐỊA CHỈ")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.ResidenceNationality)
-                    .HasColumnType("varchar(255)")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -554,12 +488,30 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
             });
 
+            modelBuilder.Entity<Nationality>(entity =>
+            {
+                entity.ToTable("nationality");
+
+                entity.Property(e => e.NationalityId)
+                    .HasColumnName("NationalityID")
+                    .ValueGeneratedNever()
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.NationalityName)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+            });
+
             modelBuilder.Entity<Provincial>(entity =>
             {
                 entity.ToTable("provincial");
 
                 entity.Property(e => e.ProvincialId)
                     .HasColumnName("ProvincialID")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -572,15 +524,59 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
             });
 
+            modelBuilder.Entity<Rollcall>(entity =>
+            {
+                entity.ToTable("rollcall");
+
+                entity.HasComment("Bảng điểm danh");
+
+                entity.HasIndex(e => e.EmployeeDetailId)
+                    .HasName("Reference key EmployeeDetail");
+
+                entity.Property(e => e.RollCallId)
+                    .HasColumnName("RollCallID")
+                    .ValueGeneratedNever()
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.EmployeeCode)
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.EmployeeDetailId)
+                    .HasColumnName("EmployeeDetailID")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.RollCallTimeCode)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.TimeCheckin).HasColumnType("datetime");
+
+                entity.HasOne(d => d.EmployeeDetail)
+                    .WithMany(p => p.Rollcall)
+                    .HasForeignKey(d => d.EmployeeDetailId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Reference key EmployeeDetail");
+            });
+
             modelBuilder.Entity<Timekeeping>(entity =>
             {
                 entity.ToTable("timekeeping");
 
                 entity.HasComment("Bảng chấm công");
 
+                entity.HasIndex(e => e.EmployeeDetailId)
+                    .HasName("FK_timekeeping_EmployeeDetailID");
+
                 entity.Property(e => e.TimeKeepingId)
                     .HasColumnName("TimeKeepingID")
                     .HasComment("Khóa chính bảng chấm công")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -588,6 +584,12 @@ namespace HRMAspNet.Models
                     .IsRequired()
                     .HasColumnType("varchar(255)")
                     .HasComment("Mã nhân viên")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.EmployeeDetailId)
+                    .HasColumnName("EmployeeDetailID")
+                    .HasComment("Khóa chính bảng thôgn tin chi tiết nhân viên")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
@@ -601,6 +603,17 @@ namespace HRMAspNet.Models
                 entity.Property(e => e.Period)
                     .HasColumnType("datetime")
                     .HasComment("Kỳ chấm công");
+
+                entity.Property(e => e.TimeCode)
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.HasOne(d => d.EmployeeDetail)
+                    .WithMany(p => p.Timekeeping)
+                    .HasForeignKey(d => d.EmployeeDetailId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_timekeeping_EmployeeDetailID");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -613,6 +626,7 @@ namespace HRMAspNet.Models
 
                 entity.Property(e => e.UserId)
                     .HasColumnName("UserID")
+                    .ValueGeneratedNever()
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 

@@ -45,14 +45,17 @@ namespace HRMAspNet
                                                           "http://www.contoso.com").AllowAnyHeader().AllowAnyMethod();
                                   });
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HRMContext>(options => options
                .UseMySql(mySqlConnectionStr,
                    mysqlOptions =>
-                       mysqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 23), ServerType.MySql))));
+                       mysqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 23), ServerType.MySql))), ServiceLifetime.Transient);
 
+            services.AddTransient<HRMContext>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Swagger Demo", Version = "v1" });
@@ -66,6 +69,9 @@ namespace HRMAspNet
             services.AddScoped(typeof(IBase<>), typeof(BaseService<>));
             services.AddScoped(typeof(IAdministrativeArea),typeof(AministrativeAreaService) );
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRollCall, RollCallService>();
+            services.AddScoped<ITimeKeeping, TimeKeepingService>();
+            
 
         }
 

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LiVd7Kj7YTmrydRaUXKEm0sin/1Be9+CN4FqeFV/HF5LES+bjrdL8Hntcg9knlfQU7E0TuFMky8ZPNCGjRJiyA==",
+  "dgSpecHash": "DgOdYyKtHeRbgDzDCdue2llFArny/Oy9od3ZFZSEOQc8w1df4G0B3Lm2Es6oKnv1uhDGnlCGz2iZRiquIwjmsw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Huy Hoang PC\\Desktop\\github\\BACKEND\\HRMAspNet\\HRMAspNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.12\\microsoft.aspnetcore.jsonpatch.3.1.12.nupkg.sha512",
+    "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.12\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.12.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
@@ -58,7 +60,8 @@
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\mysqlconnector\\0.61.0\\mysqlconnector.0.61.0.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.1.2\\pomelo.entityframeworkcore.mysql.3.1.2.nupkg.sha512",
     "C:\\Users\\Huy Hoang PC\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",
