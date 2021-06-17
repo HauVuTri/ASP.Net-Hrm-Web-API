@@ -11,8 +11,20 @@ namespace HRMAspNet.Models
         public string EmployeeCode { get; set; }
         public DateTime TimeCheckin { get; set; }
         public float LateTime { get; set; }
+        public int Shift { get; set; }
 
         public virtual Employeedetail EmployeeDetail { get; set; }
+
+        public Rollcall(Guid rollCallId, string rollCallTimeCode, Guid employeeDetailId, string employeeCode, DateTime timeCheckin, float lateTime, int shift)
+        {
+            RollCallId = rollCallId;
+            RollCallTimeCode = rollCallTimeCode;
+            EmployeeDetailId = employeeDetailId;
+            EmployeeCode = employeeCode;
+            TimeCheckin = timeCheckin;
+            LateTime = lateTime;
+            Shift = shift;
+        }
 
         public Rollcall(Guid rollCallId, string rollCallTimeCode, Guid employeeDetailId, string employeeCode, DateTime timeCheckin, float lateTime)
         {

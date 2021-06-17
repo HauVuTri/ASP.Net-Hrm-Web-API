@@ -51,8 +51,21 @@ namespace HRMAspNet.Services
             var lateTime = CalculateNumberOfMinutesLateSoonLeave(dateTimeRollCall);
             if (lateTime == -9999) return false;
 
+            //Ca làm việc
+            var shiftWorking = 1;
+
+            if (7 <= int.Parse(hour) && int.Parse(hour) < 12)
+            {
+                shiftWorking = 1;
+
+            }
+            else if (13 < int.Parse(hour) && int.Parse(hour) < 23)
+            {
+                shiftWorking = 2;
+            }
+
             //Thêm mới bản ghi vào DB
-            _context.Rollcall.Add(new Rollcall(Guid.NewGuid(), rollCallTimeCode, employeeDetailID, employeeSearching.EmployeeCode, dateTimeRollCall, lateTime));
+            _context.Rollcall.Add(new Rollcall(Guid.NewGuid(), rollCallTimeCode, employeeDetailID, employeeSearching.EmployeeCode, dateTimeRollCall, lateTime, shiftWorking));
             var count = await _context.SaveChangesAsync();
             if (count < 1)
             {
@@ -165,10 +178,23 @@ namespace HRMAspNet.Services
             }
             var dateTimeRollCall = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(day), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second));
             var lateTime = CalculateNumberOfMinutesLateSoonLeave(dateTimeRollCall);
-            if (lateTime == -9999) return false;
+            //if (lateTime == -9999) return false;
+
+            //Ca làm việc
+            var shiftWorking = 1;
+
+            if (7 <= int.Parse(hour) && int.Parse(hour) < 12)
+            {
+                shiftWorking = 1;
+
+            }
+            else if (13 < int.Parse(hour) && int.Parse(hour) < 23)
+            {
+                shiftWorking = 2;
+            }
 
             //Thêm mới bản ghi vào DB
-            _context.Rollcall.Add(new Rollcall(Guid.NewGuid(), rollCallTimeCode, employeeSameCode.EmployeeDetailId, employeeCode, dateTimeRollCall, lateTime));
+            _context.Rollcall.Add(new Rollcall(Guid.NewGuid(), rollCallTimeCode, employeeSameCode.EmployeeDetailId, employeeCode, dateTimeRollCall, lateTime, shiftWorking));
             var count = await _context.SaveChangesAsync();
             if (count < 1)
             {

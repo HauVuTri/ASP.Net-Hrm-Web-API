@@ -27,7 +27,7 @@ namespace HRMAspNet.Services
             //Check thông tin request gửi lên xem có user nào có trùng usernaem và password nưh vậy không
             using (HRMContext context = new HRMContext())
             {
-                var user = context.User.FirstOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+                var user = context.User.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
                 // return null if user not found
                 if (user == null) return null;
 

@@ -34,5 +34,29 @@ namespace HRMAspNet.Controllers
         {
             return await _timeKeeping.GetTimeKeepingIncludeEmployeeByTimeCode(timeCode);
         }
+
+        /// <summary>
+        /// Tính toán lại SỐ CÔNG của tháng(timeCode ) gửi lên
+        /// </summary>
+        /// <param name="timeCode"></param>
+        /// <returns></returns>
+        [HttpGet("CalculateTimeKeeping/{timeCode}")]
+        public async Task<bool> CalculateTimeKeeping(string timeCode)
+        {
+            return await _timeKeeping.CalculateTimeKeeping(timeCode);
+        }
+
+        /// <summary>
+        /// Lấy số lao động đi muộn trong tháng (từng ngày 1)
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetNumberOfEmployeeLateInMonth/{timeCode}")]
+        public async Task<List<int>> GetNumberOfEmployeeLateInMonth(string timeCode)
+        {
+            return await _timeKeeping.GetNumberOfEmployeeLateInMonth(timeCode);
+        }
+
+
+
     }
 }

@@ -555,6 +555,11 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
+                entity.Property(e => e.Shift)
+                    .HasColumnType("int(2)")
+                    .HasDefaultValueSql("'1'")
+                    .HasComment("Ca làm việc: 1: Sáng 2:Chiều");
+
                 entity.Property(e => e.TimeCheckin).HasColumnType("datetime");
 
                 entity.HasOne(d => d.EmployeeDetail)
@@ -609,6 +614,8 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
+                entity.Property(e => e.TotalWorkDayInMonth).HasDefaultValueSql("'16'");
+
                 entity.HasOne(d => d.EmployeeDetail)
                     .WithMany(p => p.Timekeeping)
                     .HasForeignKey(d => d.EmployeeDetailId)
@@ -630,6 +637,12 @@ namespace HRMAspNet.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
                 entity.Property(e => e.FullName)
                     .IsRequired()
                     .HasColumnType("varchar(255)")
@@ -643,12 +656,6 @@ namespace HRMAspNet.Models
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.UserCode)
-                    .IsRequired()
-                    .HasColumnType("varchar(255)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
-
-                entity.Property(e => e.Username)
                     .IsRequired()
                     .HasColumnType("varchar(255)")
                     .HasCharSet("utf8")

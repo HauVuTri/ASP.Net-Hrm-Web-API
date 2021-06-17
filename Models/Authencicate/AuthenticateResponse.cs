@@ -16,7 +16,7 @@ namespace HRMAspNet.Models.Authencicate
             UserId = user.UserId;
             UserCode = user.UserCode;
             FullName = user.FullName;
-            Username = user.Username;
+            Username = user.Email;
             Token = token;
         }
     }
